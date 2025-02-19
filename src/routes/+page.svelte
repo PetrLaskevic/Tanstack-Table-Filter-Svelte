@@ -91,7 +91,7 @@
     //To build deletedUsersToBeSentToServer either traverse array twice with 2 filter calls
     deletedUsersToBeSentToServer = data
         .filter((_, index) => rows.has(index))
-        .map(user => user.email);
+        .map(user => user.uuid);
     
     data = data.filter((_, index) => !rows.has(index));
     //Or do it with a for loop
