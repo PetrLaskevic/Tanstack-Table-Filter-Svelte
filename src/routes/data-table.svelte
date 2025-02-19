@@ -75,11 +75,24 @@ const table = createSvelteTable({
 
 
 function selectThisRowAndUnselectOthers(event, table, row){
-    if (!event.target.closest('.checkbox')) {
-         //unselect all rows
-        table.toggleAllPageRowsSelected(false);
-        //select this row in particular
+    //On right click, we want to select the row if no rows are selected, 
+    // but otherwise if there is a selection, we don't want to cancel it
+    if(event.type == "contextmenu"){
         row.toggleSelected(true);
+        return;
+    }
+    
+    if (!event.target.closest('.checkbox')) {
+        if(!(event.ctrlKey || event.shiftKey)){
+             //unselect all rows
+            table.toggleAllPageRowsSelected(false);
+            //select this row in particular
+            row.toggleSelected(true);
+        }else{
+            //if shift or ctrl is held down, it makes sense to select more rows, the same as checkbox
+            row.toggleSelected(!row.getIsSelected());
+        }
+        
     }
     console.log("jupí");
    
@@ -120,7 +133,7 @@ function selectThisRowAndUnselectOthers(event, table, row){
         </Table.Header>
         <Table.Body>
         {#each table.getRowModel().rows as row (row.id)}
-            <Table.Row data-state={row.getIsSelected() && "selected"} onclick={(event) => selectThisRowAndUnselectOthers(event, table, row)}>
+            <Table.Row data-state={row.getIsSelected() && "selected"} onclick={(event) => selectThisRowAndUnselectOthers(event, table, row)} oncontextmenu={(event) => selectThisRowAndUnselectOthers(event, table, row)}>
             {#each row.getVisibleCells() as cell (cell.id)}
                 <Table.Cell>
                 <FlexRender
