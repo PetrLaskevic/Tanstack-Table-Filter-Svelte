@@ -45,6 +45,7 @@ export const columns: ColumnDef<Payment>[] = [
         header: ({ table }) =>
           renderComponent(Checkbox, {
             checked: table.getIsAllPageRowsSelected(),
+            class: "checkbox",
             indeterminate:
               table.getIsSomePageRowsSelected() &&
               !table.getIsAllPageRowsSelected(),
@@ -54,6 +55,7 @@ export const columns: ColumnDef<Payment>[] = [
         cell: ({ row }) =>
           renderComponent(Checkbox, {
             checked: row.getIsSelected(),
+            class: "checkbox",
             onCheckedChange: (value) => row.toggleSelected(!!value),
             "aria-label": "Select row",
           }),
