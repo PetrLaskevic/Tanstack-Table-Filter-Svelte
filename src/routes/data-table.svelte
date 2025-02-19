@@ -18,6 +18,7 @@ let { data, columns }: DataTableProps<TData, TValue> = $props();
 let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
 let sorting = $state<SortingState>([]);
 let columnFilters = $state<ColumnFiltersState>([]);
+let rowSelection = $state<RowSelectionState>({});
  
 const table = createSvelteTable({
     get data() {
@@ -33,6 +34,9 @@ const table = createSvelteTable({
         },
         get columnFilters() {
             return columnFilters;
+        },
+        get rowSelection() {
+            return rowSelection;
         },
     },
     onSortingChange: (updater) => {
@@ -54,6 +58,13 @@ const table = createSvelteTable({
         columnFilters = updater(columnFilters);
       } else {
         columnFilters = updater;
+      }
+    },
+    onRowSelectionChange: (updater) => {
+      if (typeof updater === "function") {
+        rowSelection = updater(rowSelection);
+      } else {
+        rowSelection = updater;
       }
     },
     getCoreRowModel: getCoreRowModel(),
@@ -117,6 +128,14 @@ const table = createSvelteTable({
         </Table.Body>
     </Table.Root>
     </div>
+
+
+    <div class="text-muted-foreground flex-1 text-sm">
+        {table.getFilteredSelectedRowModel().rows.length} of{" "}
+        {table.getFilteredRowModel().rows.length} row(s) selected.
+    </div>
+  
+  
 
     <div class="flex items-center justify-end space-x-2 py-4">
         <Button
