@@ -9,7 +9,7 @@
 
 
 
-    type Payment = {
+    type User = {
         uuid: string;
         createdAt: string;
         username: string;
@@ -20,7 +20,7 @@
         losses: number;
     };
  
-  let data: Payment[] = $state([
+  let data: User[] = $state([
     {
         "uuid": "67fda282-2bca-41ef-9caf-039cc5c8dd69",
         "createdAt": "2025-02-19T19:20:38.069Z",
@@ -87,14 +87,21 @@
     let rows = new Set(Object.keys(selected).map(Number));
 
     // data = data.filter((value, index) => !rows.has(index))
-    for(let index = 0; index < data.length; index++){
+
+    //To build deletedUsersToBeSentToServer either traverse array twice with 2 filter calls
+    // deletedUsersToBeSentToServer = data
+    //     .filter((_, index) => rows.has(index))
+    //     .map(user => user.email);
+    
+    // data = data.filter((_, index) => !rows.has(index));
+    //Or do it with a for loop
+    for(let index = data.length - 1; index >= 0; index--) {
         if(rows.has(index)){
             deletedUsersToBeSentToServer.push(data[index].email);
-        }else{
             data.splice(index, 1);
         }
     }
-    console.log(deletedUsersToBeSentToServer);
+    console.log(deletedUsersToBeSentToServer, $state.snapshot(data));
     table.toggleAllPageRowsSelected(false);
   }
   
