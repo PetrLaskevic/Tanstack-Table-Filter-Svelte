@@ -59,14 +59,9 @@
     console.log("delete", $state.snapshot(selected));
 
     let rows = new Set(Object.keys(selected).map(Number));
-    let newData : Array<number> = []
-    // for(let rowIndex of Object.keys(selected)){
-    //     //yes, terrible time complexity, this is just for demo
-    //     data.splice(Number(rowIndex), 1);
-    // }
-    console.log("data before", $state.snapshot(data), rows);
+    
     data = data.filter((value, index) => !rows.has(index))
-    console.log("data after", $state.snapshot(data));
+
     table.toggleAllPageRowsSelected(false);
   }
   
