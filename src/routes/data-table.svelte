@@ -7,6 +7,7 @@ import {
 import * as Table from "$lib/components/ui/table/index.js";
 import { Button } from "$lib/components/ui/button/index.js";
 import Input from "$lib/components/ui/input/input.svelte";
+import * as Select from "$lib/components/ui/select/index.js";
  
 type DataTableProps<TData, TValue> = {
     columns: ColumnDef<TData, TValue>[];
@@ -106,21 +107,55 @@ function selectThisRowAndUnselectOthers(event, table, row){
     console.log("jupí");
    
 }
-</script>
 
+let filterValue = $state("email");
+
+const valuesToEN = {
+  "Emailu": "email",
+  "Uživatelského jména": "username",
+  "ELO": "elo",
+  "Výher": "wins",
+  "Remíz": "draws",
+  "Proher": "losses"
+};
+
+const valuesToCZ = {
+  "email": "Emailu",
+  "username": "Uživatelského jména",
+  "elo": "ELO",
+  "wins": "Výher",
+  "draws": "Remíz",
+  "losses": "Proher"
+};
+
+
+</script>
+<p>{filterValue}</p>
 <div>
     <div class="flex items-center py-4">
         <Input
-        placeholder="Filter emails..."
-        value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+        placeholder="Filtrovat podle..."
+        value={(table.getColumn(filterValue)?.getFilterValue() as string) ?? ""}
         onchange={(e) => {
-            table.getColumn("email")?.setFilterValue(e.currentTarget.value);
+            table.getColumn(filterValue)?.setFilterValue(e.currentTarget.value);
         }}
         oninput={(e) => {
-            table.getColumn("email")?.setFilterValue(e.currentTarget.value);
+            table.getColumn(filterValue)?.setFilterValue(e.currentTarget.value);
         }}
         class="max-w-sm"
         />
+        <!-- () => filterValue, (e) => filterValue = valuesToCZ[e] -->
+        <Select.Root type="single" bind:value={filterValue}> 
+            <Select.Trigger class="w-[180px]">{valuesToCZ[filterValue]}</Select.Trigger>
+            <Select.Content>
+              <Select.Item value="email">Emailu</Select.Item>
+              <Select.Item value="username">Uživatelského jména</Select.Item>
+              <Select.Item value="elo">ELO</Select.Item>
+              <Select.Item value="wins">Výher</Select.Item>
+              <Select.Item value="draws">Remíz</Select.Item>
+              <Select.Item value="losses">Proher</Select.Item>
+            </Select.Content>
+          </Select.Root>
     </div>
     <div class="rounded-md border">
     <Table.Root>
