@@ -1,6 +1,6 @@
 import type { ColumnDef } from "@tanstack/table-core";
 import { renderComponent } from "$lib/components/ui/data-table/index.js";
-import DataTableEmailButton from "./data-table-email-button.svelte";
+import DataTableColumnSortButton from "./data-table-sortable-button.svelte";
 import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -19,30 +19,51 @@ type User = {
 export const columns: ColumnDef<User>[] = [
     {
         accessorKey: "username",
-        header: "Uživatelské jméno",
+        header: ({ column }) =>
+            renderComponent(DataTableColumnSortButton, {
+              headerName: "Uživatelské jméno",
+              onclick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+        }),
     },
     {
         accessorKey: "email",
         header: ({ column }) =>
-          renderComponent(DataTableEmailButton, {
+          renderComponent(DataTableColumnSortButton, {
+            headerName: "Email",
             onclick: () => column.toggleSorting(column.getIsSorted() === "asc"),
-          }),
+        }),
     },
     {
         accessorKey: "elo",
-        header: "ELO",
+        header: ({ column }) =>
+            renderComponent(DataTableColumnSortButton, {
+              headerName: "ELO",
+              onclick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+        }),
     },
     {
         accessorKey: "wins",
-        header: "Výhry",
+        header: ({ column }) =>
+            renderComponent(DataTableColumnSortButton, {
+              headerName: "Výhry",
+              onclick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+        }),
     },
     {
         accessorKey: "draws",
-        header: "Remízy",
+        header: ({ column }) =>
+            renderComponent(DataTableColumnSortButton, {
+              headerName: "Remízy",
+              onclick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+        }),
     },
     {
         accessorKey: "losses",
-        header: "Prohry",
+        header: ({ column }) =>
+            renderComponent(DataTableColumnSortButton, {
+              headerName: "Prohry",
+              onclick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+        }),
     },
 
 
