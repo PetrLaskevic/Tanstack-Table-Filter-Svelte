@@ -1,6 +1,7 @@
 	
 <script lang="ts">
   import DataTable from "./data-table.svelte";
+  import * as ContextMenu from "$lib/components/ui/context-menu/index.js";
   import { columns } from "./columns.js";
  
 //   let { data } = $props();
@@ -49,5 +50,14 @@
   ];
 </script>
  
-<DataTable {data} {columns} />
+
+<ContextMenu.Root>
+    <ContextMenu.Trigger><DataTable {data} {columns} /></ContextMenu.Trigger>
+    <ContextMenu.Content>
+      <ContextMenu.Item>Profile</ContextMenu.Item>
+      <ContextMenu.Item>Billing</ContextMenu.Item>
+      <ContextMenu.Item>Team</ContextMenu.Item>
+      <ContextMenu.Item>Subscription</ContextMenu.Item>
+    </ContextMenu.Content>
+  </ContextMenu.Root>
 
