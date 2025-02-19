@@ -135,12 +135,12 @@ const valuesToCZ = {
     <div class="flex items-center py-4">
         <Input
         placeholder="Filtrovat podle..."
-        value={(table.getColumn(filterValue)?.getFilterValue() as string) ?? ""}
+        value={(table.getColumn(filterValue).getFilterValue() as string) ?? ""}
         onchange={(e) => {
-            table.getColumn(filterValue)?.setFilterValue(e.currentTarget.value);
+            table.getColumn(filterValue).setFilterValue(e.currentTarget.value);
         }}
         oninput={(e) => {
-            table.getColumn(filterValue)?.setFilterValue(e.currentTarget.value);
+            table.getColumn(filterValue).setFilterValue(e.currentTarget.value);
         }}
         class="max-w-sm"
         />
