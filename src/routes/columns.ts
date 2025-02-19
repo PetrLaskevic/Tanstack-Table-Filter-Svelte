@@ -1,6 +1,7 @@
 import type { ColumnDef } from "@tanstack/table-core";
 import { renderComponent } from "$lib/components/ui/data-table/index.js";
 import DataTableActions from "./data-table-actions.svelte";
+import DataTableEmailButton from "./data-table-email-button.svelte";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
@@ -17,7 +18,10 @@ export const columns: ColumnDef<Payment>[] = [
     },
     {
         accessorKey: "email",
-        header: "Email",
+        header: ({ column }) =>
+          renderComponent(DataTableEmailButton, {
+            onclick: () => column.toggleSorting(column.getIsSorted() === "asc"),
+          }),
     },
     {
         accessorKey: "amount",
