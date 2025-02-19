@@ -89,18 +89,13 @@
     // data = data.filter((value, index) => !rows.has(index))
 
     //To build deletedUsersToBeSentToServer either traverse array twice with 2 filter calls
-    // deletedUsersToBeSentToServer = data
-    //     .filter((_, index) => rows.has(index))
-    //     .map(user => user.email);
+    deletedUsersToBeSentToServer = data
+        .filter((_, index) => rows.has(index))
+        .map(user => user.email);
     
-    // data = data.filter((_, index) => !rows.has(index));
+    data = data.filter((_, index) => !rows.has(index));
     //Or do it with a for loop
-    for(let index = data.length - 1; index >= 0; index--) {
-        if(rows.has(index)){
-            deletedUsersToBeSentToServer.push(data[index].email);
-            data.splice(index, 1);
-        }
-    }
+ 
     console.log(deletedUsersToBeSentToServer, $state.snapshot(data));
     table.toggleAllPageRowsSelected(false);
   }
