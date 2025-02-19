@@ -14,8 +14,8 @@ export type Payment = {
  
 export const columns: ColumnDef<Payment>[] = [
     {
-        accessorKey: "status",
-        header: "Status",
+        accessorKey: "username",
+        header: "Uživatelské jméno",
     },
     {
         accessorKey: "email",
@@ -25,9 +25,22 @@ export const columns: ColumnDef<Payment>[] = [
           }),
     },
     {
-        accessorKey: "amount",
-        header: "Amount",
+        accessorKey: "elo",
+        header: "ELO",
     },
+    {
+        accessorKey: "wins",
+        header: "Výhry",
+    },
+    {
+        accessorKey: "draws",
+        header: "Remízy",
+    },
+    {
+        accessorKey: "losses",
+        header: "Prohry",
+    },
+
 
     //A column for the Ellipsis buttons which can act as a menu
     // => I think selecting rows with checkbox and right click context menu is better

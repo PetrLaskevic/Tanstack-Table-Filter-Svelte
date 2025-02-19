@@ -10,43 +10,67 @@
 
 
     type Payment = {
-        id: string;
-        amount: number;
-        status: "pending" | "processing" | "success" | "failed";
+        uuid: string;
+        createdAt: string;
+        username: string;
         email: string;
+        elo: number;
+        wins: number;
+        draws: number;
+        losses: number;
     };
  
   let data: Payment[] = $state([
     {
-      id: "m5gr84i9",
-      amount: 316,
-      status: "success",
-      email: "ken99@yahoo.com"
+        "uuid": "67fda282-2bca-41ef-9caf-039cc5c8dd69",
+        "createdAt": "2025-02-19T19:20:38.069Z",
+        "username": "User123",
+        "email": "email@example.com",
+        "elo": 400,
+        "wins": 0,
+        "draws": 0,
+        "losses": 0
     },
     {
-      id: "3u1reuv4",
-      amount: 242,
-      status: "success",
-      email: "Abe45@gmail.com"
+        "uuid": "67tzj852-2bca-41ef-9caf-039cc5c8dd69",
+        "createdAt": "2025-02-19T19:20:38.069Z",
+        "username": "DragonSlayer69",
+        "email": "epic@example.com",
+        "elo": 400,
+        "wins": 0,
+        "draws": 0,
+        "losses": 0
     },
     {
-      id: "derv1ws0",
-      amount: 837,
-      status: "processing",
-      email: "Monserrat44@gmail.com"
+        "uuid": "89wer182-2b5a-41ef-9cgwgreaddgergd69",
+        "createdAt": "2025-02-19T19:20:38.069Z",
+        "username": "User456",
+        "email": "piskvorky@example.com",
+        "elo": 400,
+        "wins": 0,
+        "draws": 0,
+        "losses": 0
     },
     {
-      id: "5kma53ae",
-      amount: 874,
-      status: "success",
-      email: "Silas22@gmail.com"
+        "uuid": "89wer182-2b5a-41ef-9cg547g6ergergd69",
+        "createdAt": "2025-02-19T19:20:38.069Z",
+        "username": "Thermos",
+        "email": "text@example.com",
+        "elo": 6969,
+        "wins": 0,
+        "draws": 0,
+        "losses": 0
     },
     {
-      id: "bhqecj4p",
-      amount: 721,
-      status: "failed",
-      email: "carmella@hotmail.com"
-    }
+        "uuid": "89wer182-2b5a-41ef-9cg547g6ergergd69",
+        "createdAt": "2025-02-19T19:20:38.069Z",
+        "username": "GreatestPlayerAlive",
+        "email": "greatest.player.alive@example.com",
+        "elo": 700,
+        "wins": 0,
+        "draws": 0,
+        "losses": 0
+    },
   ]);
 
   //as these two variables are not used in any templating, I believe the warnings are not relevant
