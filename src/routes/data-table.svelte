@@ -11,14 +11,22 @@ import Input from "$lib/components/ui/input/input.svelte";
 type DataTableProps<TData, TValue> = {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
+    tableReference: any;
+    selectedRows: any
 };
  
-let { data, columns }: DataTableProps<TData, TValue> = $props();
+let { data, columns, tableReference = $bindable(), selectedRows = $bindable() }: DataTableProps<TData, TValue> = $props();
 
 let pagination = $state<PaginationState>({ pageIndex: 0, pageSize: 10 });
 let sorting = $state<SortingState>([]);
 let columnFilters = $state<ColumnFiltersState>([]);
 let rowSelection = $state<RowSelectionState>({});
+// $inspect(rowSelection);
+
+// selectedRows = $derived(rowSelection);
+$effect(() => {
+    selectedRows = rowSelection;
+})
  
 const table = createSvelteTable({
     get data() {
@@ -73,6 +81,7 @@ const table = createSvelteTable({
     getFilteredRowModel: getFilteredRowModel(),
 });
 
+tableReference = table;
 
 function selectThisRowAndUnselectOthers(event, table, row){
     //On right click, we want to select the row if no rows are selected, 
@@ -81,7 +90,7 @@ function selectThisRowAndUnselectOthers(event, table, row){
         row.toggleSelected(true);
         return;
     }
-    
+
     if (!event.target.closest('.checkbox')) {
         if(!(event.ctrlKey || event.shiftKey)){
              //unselect all rows
