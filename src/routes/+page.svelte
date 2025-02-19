@@ -55,13 +55,22 @@
     property: true
   }
 
+  let deletedUsersToBeSentToServer = [];
+
   function deleteUsers(){
     console.log("delete", $state.snapshot(selected));
 
     let rows = new Set(Object.keys(selected).map(Number));
-    
-    data = data.filter((value, index) => !rows.has(index))
 
+    // data = data.filter((value, index) => !rows.has(index))
+    for(let index = 0; index < data.length; index++){
+        if(rows.has(index)){
+            deletedUsersToBeSentToServer.push(data[index].email);
+        }else{
+            data.splice(index, 1);
+        }
+    }
+    console.log(deletedUsersToBeSentToServer);
     table.toggleAllPageRowsSelected(false);
   }
   
