@@ -129,23 +129,32 @@ const valuesToCZ = {
 };
 
 
+function logFilterConfig(){
+    // console.log(table.getState().columnFilters);
+    table.getColumn("elo").setFilterValue("400");
+    
+
+}
+let searchQuery: string = $state("");
 </script>
-<p>{filterValue}</p>
+<p>{filterValue} {searchQuery}</p>
 <div>
     <div class="flex items-center py-4">
         <Input
         placeholder="Filtrovat podle..."
-        value={(table.getColumn(filterValue).getFilterValue() as string) ?? ""}
+        value={(table.getColumn("elo").getFilterValue() as string) ?? ""}
         onchange={(e) => {
-            table.getColumn(filterValue).setFilterValue(e.currentTarget.value);
+            searchQuery = e.currentTarget.value;
+            table.getColumn("elo").setFilterValue(searchQuery);
         }}
         oninput={(e) => {
-            table.getColumn(filterValue).setFilterValue(e.currentTarget.value);
+            searchQuery = e.currentTarget.value;
+            table.getColumn("elo").setFilterValue(searchQuery);
         }}
         class="max-w-sm"
         />
         <!-- () => filterValue, (e) => filterValue = valuesToCZ[e] -->
-        <Select.Root type="single" bind:value={filterValue}> 
+        <Select.Root type="single" onValueChange={logFilterConfig} bind:value={filterValue}> 
             <Select.Trigger class="w-[180px]">{valuesToCZ[filterValue]}</Select.Trigger>
             <Select.Content>
               <Select.Item value="email">Emailu</Select.Item>
