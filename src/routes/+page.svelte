@@ -27,7 +27,7 @@
         "username": "User123",
         "email": "email@example.com",
         "elo": 400,
-        "wins": 0,
+        "wins": 1,
         "draws": 0,
         "losses": 0
     },
@@ -37,9 +37,9 @@
         "username": "DragonSlayer69",
         "email": "epic@example.com",
         "elo": 400,
-        "wins": 0,
-        "draws": 0,
-        "losses": 0
+        "wins": 20,
+        "draws": 99,
+        "losses": 20
     },
     {
         "uuid": "89wer182-2b5a-41ef-9cgwgreaddgergd69",
@@ -47,9 +47,9 @@
         "username": "User456",
         "email": "piskvorky@example.com",
         "elo": 400,
-        "wins": 0,
-        "draws": 0,
-        "losses": 0
+        "wins": 3,
+        "draws": 10,
+        "losses": 6
     },
     {
         "uuid": "89wer182-2b5a-41ef-9cg547g6ergergd69",
@@ -57,9 +57,9 @@
         "username": "Thermos",
         "email": "text@example.com",
         "elo": 6969,
-        "wins": 0,
-        "draws": 0,
-        "losses": 0
+        "wins": 4000,
+        "draws": 3,
+        "losses": 22
     },
     {
         "uuid": "89wer182-2b5a-41ef-9cg547g6ergergd69",
@@ -67,8 +67,8 @@
         "username": "GreatestPlayerAlive",
         "email": "greatest.player.alive@example.com",
         "elo": 700,
-        "wins": 0,
-        "draws": 0,
+        "wins": 5,
+        "draws": 6,
         "losses": 0
     },
   ]);
