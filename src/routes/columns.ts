@@ -1,18 +1,22 @@
 import type { ColumnDef } from "@tanstack/table-core";
 import { renderComponent } from "$lib/components/ui/data-table/index.js";
-import DataTableActions from "./data-table-actions.svelte";
 import DataTableEmailButton from "./data-table-email-button.svelte";
 import { Checkbox } from "$lib/components/ui/checkbox/index.js";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Payment = {
- id: string;
- amount: number;
- status: "pending" | "processing" | "success" | "failed";
- email: string;
+type User = {
+    uuid: string;
+    createdAt: string;
+    username: string;
+    email: string;
+    elo: number;
+    wins: number;
+    draws: number;
+    losses: number;
 };
+
  
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<User>[] = [
     {
         accessorKey: "username",
         header: "Uživatelské jméno",
