@@ -1,5 +1,5 @@
 <script lang="ts" generics="TData, TValue">
-import { type ColumnDef, getCoreRowModel, type PaginationState, type SortingState, type ColumnFiltersState, getPaginationRowModel, getSortedRowModel, getFilteredRowModel } from "@tanstack/table-core";
+import { type ColumnDef, getCoreRowModel, type PaginationState, type SortingState, type ColumnFiltersState, type RowSelectionState, getPaginationRowModel, getSortedRowModel, getFilteredRowModel } from "@tanstack/table-core";
 import { 
     createSvelteTable,
     FlexRender,
@@ -72,6 +72,12 @@ const table = createSvelteTable({
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
 });
+
+
+function nejakaFunkce(){
+    console.log("jupí");
+    alert("gucci")
+}
 </script>
 
 <div>
@@ -108,7 +114,7 @@ const table = createSvelteTable({
         </Table.Header>
         <Table.Body>
         {#each table.getRowModel().rows as row (row.id)}
-            <Table.Row data-state={row.getIsSelected() && "selected"}>
+            <Table.Row data-state={row.getIsSelected() && "selected"} onclick={() => alert("Test")}>
             {#each row.getVisibleCells() as cell (cell.id)}
                 <Table.Cell>
                 <FlexRender
