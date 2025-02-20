@@ -1,38 +1,41 @@
-# sv
+# Tanstack-Table-Filter-Svelte
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Bug report 
+=================================
 
-## Creating a project
+Filter is hardwired to elo column.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Try entering 400.
 
-```bash
-# create a new project in the current directory
-npx sv create
+* * *
 
-# create a new project in my-app
-npx sv create my-app
-```
+## **Expected behaviour:** three rows show up
 
-## Developing
+## **Actual behaviour:** no rows show up
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Oddly enough when I make changes to this page and **save** them while the page is open, so an HMR update happens:
 
+    8:54:48 AM [vite] hmr update /src/routes/data-table.svelte, /src/app.css (x3)
+
+And then I enter the 400 again, then the **Expected behaviour** arises
+
+However, on a fresh load **Actual behaviour** happens (no rows)
+
+* * *
+
+Even more interestingly, filter seems to be working completely fine when configured to filter the username or email columns.
+
+It's specifically numbers or numbers converted to strings that cause the issue (in this branch **numbers converted to strings**)
+
+
+* * *
+## Branches:
+- **main** => converts numbers to strings
+- **numbers** => keeps numbers
+
+"numbers" is even more broken than "main"
+## To run:
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
