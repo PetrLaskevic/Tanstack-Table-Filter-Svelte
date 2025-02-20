@@ -149,7 +149,7 @@ let searchQuery: string = $state("");
     <p>However, on a fresh load <b>Actual behaviour</b> happens (no rows)</p>
     <hr>
     <p>Even more interestingly, filter seems to be working completely fine when configured to filter the username or email columns.</p>
-    <p>It's specifically numbers or numbers converted to strings that cause the issue (in this branch <b>numbers converted to strings</b>)</p>
+    <p>It's specifically numbers or numbers converted to strings that cause the issue (in this branch <b>numbers</b>)</p>
     <hr>
 </div>
 <p>{filterValue} {searchQuery}</p>

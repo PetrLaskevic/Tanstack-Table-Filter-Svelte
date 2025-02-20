@@ -3,7 +3,6 @@
   import DataTable from "./data-table.svelte";
   import * as ContextMenu from "$lib/components/ui/context-menu/index.js";
   import { columns } from "./columns.js";
-    import { onMount } from "svelte";
  
 //   let { data } = $props();
 
@@ -73,21 +72,6 @@
         "losses": 0
     },
   ]);
-
-  onMount(() => {
-    //Convert all numerical values to strings
-    data.map((object) => {
-        const keysWithNumericalValues = ["elo", "wins", "draws", "losses"];
-        for(let key of Object.keys(object)){
-            if(keysWithNumericalValues.includes(key)){
-                object[key] = String(object[key]);
-            }
-        }
-        console.log($state.snapshot(object));
-        return object;
-    })
-  });
- 
 
   //as these two variables are not used in any templating, I believe the warnings are not relevant
   let table: any; //reference to the table, not supposed to be reactive
