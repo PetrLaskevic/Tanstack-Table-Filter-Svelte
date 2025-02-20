@@ -143,13 +143,10 @@ let searchQuery: string = $state("");
     <hr>
     <p><b>Expected behaviour:</b> three rows show up</p>
     <p><b>Actual behaviour:</b> no rows show up</p>
-    <p>Oddly enough  when I make changes and <b>save</b> them while the page is open, so an HMR update happens:</p>
-    <pre><code>8:54:48 AM [vite] hmr update /src/routes/data-table.svelte, /src/app.css (x3)</code></pre>
-    <p>And then I enter the 400 again, then the <b>Expected behaviour</b> arises</p>
-    <p>However, on a fresh load <b>Actual behaviour</b> happens (no rows)</p>
     <hr>
     <p>Even more interestingly, filter seems to be working completely fine when configured to filter the username or email columns.</p>
     <p>It's specifically numbers or numbers converted to strings that cause the issue (in this branch <b>numbers</b>)</p>
+    <p>And with numbers, the filter is broken completely, it doesn't work even intermittently.</p>
     <hr>
 </div>
 <p>{filterValue} {searchQuery}</p>
