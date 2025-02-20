@@ -130,13 +130,28 @@ const valuesToCZ = {
 
 
 function logFilterConfig(){
-    // console.log(table.getState().columnFilters);
+    // console.log(table.getState().columnFilters); //outputs empty object...
     table.getColumn("elo").setFilterValue("400");
     
 
 }
 let searchQuery: string = $state("");
 </script>
+<div class="text-center">
+    <h1>Filter is hardwired to elo column</h1>
+    <p class="text-center">Try entering 400</p>
+    <hr>
+    <p><b>Expected behaviour:</b> three rows show up</p>
+    <p><b>Actual behaviour:</b> no rows show up</p>
+    <p>Oddly enough  when I make changes and <b>save</b> them while the page is open, so an HMR update happens:</p>
+    <pre><code>8:54:48 AM [vite] hmr update /src/routes/data-table.svelte, /src/app.css (x3)</code></pre>
+    <p>And then I enter the 400 again, then the <b>Expected behaviour</b> arises</p>
+    <p>However, on a fresh load <b>Actual behaviour</b> happens (no rows)</p>
+    <hr>
+    <p>Even more interestingly, filter seems to be working completely fine when configured to filter the username or email columns.</p>
+    <p>It's specifically numbers or numbers converted to strings that cause the issue (in this branch <b>numbers converted to strings</b>)</p>
+    <hr>
+</div>
 <p>{filterValue} {searchQuery}</p>
 <div>
     <div class="flex items-center py-4">
@@ -154,7 +169,7 @@ let searchQuery: string = $state("");
         class="max-w-sm"
         />
         <!-- () => filterValue, (e) => filterValue = valuesToCZ[e] -->
-        <Select.Root type="single" onValueChange={logFilterConfig} bind:value={filterValue}> 
+        <!-- <Select.Root type="single" onValueChange={logFilterConfig} bind:value={filterValue}> 
             <Select.Trigger class="w-[180px]">{valuesToCZ[filterValue]}</Select.Trigger>
             <Select.Content>
               <Select.Item value="email">Emailu</Select.Item>
@@ -164,7 +179,7 @@ let searchQuery: string = $state("");
               <Select.Item value="draws">Remíz</Select.Item>
               <Select.Item value="losses">Proher</Select.Item>
             </Select.Content>
-          </Select.Root>
+          </Select.Root> -->
     </div>
     <div class="rounded-md border">
     <Table.Root>
